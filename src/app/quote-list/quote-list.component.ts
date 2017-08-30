@@ -11,9 +11,9 @@ import { CategoryService } from './category.service';
   styleUrls: ['./quote-list.component.css']
 })
 export class QuoteListComponent implements OnInit {
-  private quotes: Quote[];
-  private categories: Category[];
-  private selectedCategory: Category = new Category('', '');
+  public quotes: Quote[];
+  public categories: Category[];
+  public selectedCategory: Category = new Category('', '');
   private filterAuthor: string;
 
   constructor(private quoteService: QuoteService, private categoryService: CategoryService) { }

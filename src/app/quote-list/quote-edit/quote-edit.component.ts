@@ -16,7 +16,7 @@ import { Quote } from './../quote.model';
 export class QuoteEditComponent implements OnInit {
   @ViewChild('f') createForm: NgForm;
   item: Quote = new Quote();
-  private categories: Category[];
+  public categories: Category[];
 
   constructor(private categoryService: CategoryService,
     private quoteService: QuoteService,

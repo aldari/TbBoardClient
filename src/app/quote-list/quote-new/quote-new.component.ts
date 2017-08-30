@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 
 export class QuoteNewComponent implements OnInit {
   @ViewChild('f') createForm: NgForm;
-  private categories: Category[];
+  public categories: Category[];
 
   constructor(private categoryService: CategoryService,
     private quoteService: QuoteService,

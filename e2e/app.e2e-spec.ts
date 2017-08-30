@@ -1,10 +1,10 @@
-import { TbBoardClientPage } from './app.po';
+import { ClientPage } from './app.po';
 
-describe('tb-board-client App', () => {
-  let page: TbBoardClientPage;
+describe('client App', () => {
+  let page: ClientPage;
 
   beforeEach(() => {
-    page = new TbBoardClientPage();
+    page = new ClientPage();
   });
 
   it('should display message saying app works', () => {

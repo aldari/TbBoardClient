@@ -3,20 +3,23 @@
 <div id="filter-panel" class=" filter-panel">
   <div class="panel panel-default">
       <div class="panel-body">
-          <form class="form-inline" role="form">
+          <form class="form-inline" role="form"  #filterForm="ngForm">
               <div class="form-group col-md-4">
                   <label class="filter-col" style="margin-right:0;" for="pref-perpage">Категории:</label>
-                  <select name="categoryFilter" class="form-control" [(ngModel)]="selectedCategory">
+                  <select name="categoryFilter" class="form-control input-md" [(ngModel)]="selectedCategory">
                         <option *ngFor="let c of categories" [ngValue]="c">{{c.title}}</option>
                   </select>
               </div> <!-- form group -->
               <div class="form-group col-md-4">
                   <label class="filter-col" style="margin-right:0;" for="pref-search">Автор цитаты:</label>
-                  <input name="authorFilter" type="text" class="form-control input-sm" id="pref-search" #authorFilter>
+                  <input name="authorFilter" type="text" class="form-control input-md" id="pref-search" #authorFilter ngModel>
               </div><!-- form group -->
               <div class="form-group">    
                   <button type="submit" class="btn btn-default filter-col" (click)="onFilter(authorFilter.value)">
-                      <span class="glyphicon glyphicon-search"></span> Filter
+                      <span class="glyphicon glyphicon-search"></span> Отфильтровать
+                  </button>
+                  <button type="submit" class="btn btn-default" (click)="onClear()">
+                     Сбросить
                   </button>
               </div>
           </form>

@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { QuoteNewComponent } from './quote-list/quote-new/quote-new.component';
 import { QuoteEditComponent } from './quote-list/quote-edit/quote-edit.component';
 import { QuoteListComponent } from './quote-list/quote-list.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [
     {
@@ -23,6 +24,10 @@ const appRoutes: Routes = [
     {
         path: 'quotes/:id',
         component: QuoteEditComponent
+    },
+    {
+        path: '**',
+        component: PageNotFoundComponent
     }
 ];
 

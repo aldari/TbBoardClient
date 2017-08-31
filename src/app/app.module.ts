@@ -13,6 +13,7 @@ import { QuoteEditComponent } from './quote-list/quote-edit/quote-edit.component
 import { QuoteService } from './quote-list/quote.service';
 import { QuoteNewComponent } from './quote-list/quote-new/quote-new.component';
 import { CategoryService } from './quote-list/category.service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CategoryService } from './quote-list/category.service';
     HeaderComponent,
     QuoteListComponent,
     QuoteEditComponent,
-    QuoteNewComponent
+    QuoteNewComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

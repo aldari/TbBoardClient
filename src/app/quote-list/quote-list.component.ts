@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { Category } from './category.model';
 import { Quote } from './quote.model';
@@ -15,8 +17,9 @@ export class QuoteListComponent implements OnInit {
   public categories: Category[];
   public selectedCategory: Category = new Category('', '');
   private filterAuthor: string;
+  @ViewChild('filterForm') filterForm: NgForm;
 
-  constructor(private quoteService: QuoteService, private categoryService: CategoryService) { }
+  constructor(private quoteService: QuoteService, private categoryService: CategoryService, private router: Router) { }
 
   ngOnInit(): void {
     this.getQuotes();
@@ -55,7 +58,12 @@ export class QuoteListComponent implements OnInit {
       quotes => this.quotes = quotes,
       err => {
            console.log(err);
-       }
+      }
     );
+  }
+
+  onClear() {
+    this.filterForm.resetForm();
+    this.selectedCategory = new Category('', '');
   }
 }

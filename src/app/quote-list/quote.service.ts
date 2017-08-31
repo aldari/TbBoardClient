@@ -5,15 +5,16 @@ import 'rxjs/Rx';
 
 import { Category } from './category.model';
 import { Quote } from './quote.model';
+import { AppConfig } from './../app.config';
 
 @Injectable()
 export class QuoteService {
-    private url = 'http://localhost:58828/api/quote';
+    private baseUrl = this.config.apiUrl + '/api/quote'; // web api URL
 
-    constructor(private http: Http) {}
+    constructor(private http: Http, private config: AppConfig) {}
 
     getQuotes(): Observable<Quote[]> {
-        return this.http.get(this.url)
+        return this.http.get(this.baseUrl)
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
@@ -26,29 +27,29 @@ export class QuoteService {
         if (categoryId) {
             myParams.append('catid', categoryId);
         }
-        return this.http.get(this.url, { params: myParams })
+        return this.http.get(this.baseUrl, { params: myParams })
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 
     get(id: string) {
-        return this.http.get(this.url + '/' + encodeURIComponent(id))
+        return this.http.get(this.baseUrl + '/' + encodeURIComponent(id))
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 
     add(quote: Quote) {
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post(this.url, JSON.stringify(quote), {headers: headers});
+        return this.http.post(this.baseUrl, JSON.stringify(quote), {headers: headers});
     }
 
     change(quote: Quote) {
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.put(this.url + '/' + encodeURIComponent(quote.id), JSON.stringify(quote), {headers: headers});
+        return this.http.put(this.baseUrl + '/' + encodeURIComponent(quote.id), JSON.stringify(quote), {headers: headers});
     }
 
     delete(id: string) {
-        const url = this.url + '/' + encodeURIComponent(id);
+        const url = this.baseUrl + '/' + encodeURIComponent(id);
         return this.http.delete(url)
             .catch(this.handleError);
     }

@@ -4,13 +4,15 @@ import { Http, Response } from '@angular/http';
 
 import { Category } from './category.model';
 import { Quote } from './quote.model';
+import { AppConfig } from './../app.config';
 
 @Injectable()
 export class CategoryService {
-    constructor(private http: Http) {}
+    private baseUrl = this.config.apiUrl + '/api/category'; // web api URL
+    constructor(private http: Http, private config: AppConfig) {}
 
     getCategories(): Observable<Category[]> {
-        return this.http.get('http://localhost:58828/api/category')
+        return this.http.get(this.baseUrl)
         .map((res: Response) => res.json())
         .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }

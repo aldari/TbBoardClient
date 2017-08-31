@@ -1,4 +1,3 @@
-import { ValidateService } from './validate.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -14,6 +13,8 @@ import { QuoteService } from './quote-list/quote.service';
 import { QuoteNewComponent } from './quote-list/quote-new/quote-new.component';
 import { CategoryService } from './quote-list/category.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ValidateService } from './validate.service';
+import { AppConfig } from './app.config';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     HttpModule,
     AppRoutingModule
   ],
-  providers: [QuoteService, CategoryService, ValidateService, { provide: LOCALE_ID, useValue: 'ru-RU' }],
+  providers: [QuoteService, CategoryService, ValidateService, { provide: LOCALE_ID, useValue: 'ru-RU' }, AppConfig,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -15,8 +15,7 @@ import { CategoryService } from './category.service';
 export class QuoteListComponent implements OnInit {
   public quotes: Quote[];
   public categories: Category[];
-  public selectedCategory: Category = new Category('', '');
-  private filterAuthor: string;
+  public selectedCategory: Category = new Category();
   @ViewChild('filterForm') filterForm: NgForm;
 
   constructor(private quoteService: QuoteService, private categoryService: CategoryService, private router: Router) { }
@@ -53,8 +52,8 @@ export class QuoteListComponent implements OnInit {
     );
   }
 
-  onFilter(authorFilter: string) {
-    this.quoteService.getQuotes2(authorFilter, this.selectedCategory.id).subscribe(
+  onFilter() {
+    this.quoteService.getQuotes2(this.filterForm.value.authorFilter, this.filterForm.value.categoryFilter.id).subscribe(
       quotes => this.quotes = quotes,
       err => {
            console.log(err);
@@ -63,7 +62,10 @@ export class QuoteListComponent implements OnInit {
   }
 
   onClear() {
-    this.filterForm.resetForm();
-    this.selectedCategory = new Category('', '');
+    this.filterForm.setValue({
+      'categoryFilter': new Category(),
+      'authorFilter': ''
+    });
+    this.onFilter();
   }
 }
